@@ -48,5 +48,5 @@ steps:
     inputs:
       command: push
       packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-      publishVstsFeed: $(feedId)
+      nugetConfigPath: $(feedId)
     displayName: 'Push package to Azure Artifacts'
