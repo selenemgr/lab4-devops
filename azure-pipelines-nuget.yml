@@ -12,27 +12,39 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  projectPath: 'ShowCase/ShowCase.csproj'
 
 steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '8.0.x'
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+  # Checkout the GitHub repo connected to this pipeline
+  - checkout: self
 
-- script: dotnet restore
-  displayName: 'Restore NuGet packages'
+  # Install .NET 8 SDK
+  - task: UseDotNet@2
+    inputs:
+      packageType: sdk
+      version: '8.0.x'
+    displayName: 'Install .NET 8 SDK'
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'Build project'
+  # Authenticate with Azure Artifacts (for pushing NuGet packages)
+  - task: NuGetAuthenticate@1
+    displayName: 'Authenticate to Azure Artifacts'
 
-- script: dotnet pack --configuration $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
-  displayName: 'Pack NuGet package'
+  # Restore NuGet packages
+  - script: dotnet restore $(projectPath)
+    displayName: 'Restore dependencies'
 
-- task: NuGetAuthenticate@1
+  # Build the project
+  - script: dotnet build $(projectPath) --configuration $(buildConfiguration) --no-restore
+    displayName: 'Build project'
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    publishVstsFeed: 'Lab4-Feed'
+  # Pack the project into a NuGet package
+  - script: dotnet pack $(projectPath) --configuration $(buildConfiguration) --no-build -o $(Build.ArtifactStagingDirectory)
+    displayName: 'Pack NuGet package'
+
+  # Push the NuGet package to Azure Artifacts
+  - task: NuGetCommand@2
+    inputs:
+      command: push
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+      publishVstsFeed: 'Lab4-Feed'
+    displayName: 'Push package to Azure Artifacts'
