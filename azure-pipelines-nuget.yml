@@ -10,9 +10,11 @@ pool:
   vmImage: 'windows-latest'
   name: 'self-host'
 
+
 variables:
   buildConfiguration: 'Release'
-  projectPath: 'ShowCase/ShowCase.csproj'
+  solutionPath: 'Lab4_ClassLibrary.sln' 
+  feedId: 'Lab4-Feed' 
 
 steps:
   # Checkout the GitHub repo connected to this pipeline
@@ -29,16 +31,16 @@ steps:
   - task: NuGetAuthenticate@1
     displayName: 'Authenticate to Azure Artifacts'
 
-  # Restore NuGet packages
-  - script: dotnet restore $(projectPath)
+  # Restore NuGet packages for the entire solution
+  - script: dotnet restore $(solutionPath)
     displayName: 'Restore dependencies'
 
-  # Build the project
-  - script: dotnet build $(projectPath) --configuration $(buildConfiguration) --no-restore
-    displayName: 'Build project'
+  # Build the entire solution
+  - script: dotnet build $(solutionPath) --configuration $(buildConfiguration) --no-restore
+    displayName: 'Build solution'
 
-  # Pack the project into a NuGet package
-  - script: dotnet pack $(projectPath) --configuration $(buildConfiguration) --no-build -o $(Build.ArtifactStagingDirectory)
+  # Pack the solution into a NuGet package (you can specify the projects to pack if needed)
+  - script: dotnet pack $(solutionPath) --configuration $(buildConfiguration) --no-build -o "$(Build.ArtifactStagingDirectory)"
     displayName: 'Pack NuGet package'
 
   # Push the NuGet package to Azure Artifacts
@@ -46,5 +48,5 @@ steps:
     inputs:
       command: push
       packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-      publishVstsFeed: 'Lab4-Feed'
+      publishVstsFeed: $(feedId)
     displayName: 'Push package to Azure Artifacts'
