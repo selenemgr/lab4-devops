@@ -1,0 +1,11 @@
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\bin\Debug\net8.0\StringLibrary.deps.json
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\bin\Debug\net8.0\StringLibrary.dll
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\bin\Debug\net8.0\StringLibrary.pdb
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\obj\Debug\net8.0\StringLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\obj\Debug\net8.0\StringLibrary.AssemblyInfoInputs.cache
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\obj\Debug\net8.0\StringLibrary.AssemblyInfo.cs
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\obj\Debug\net8.0\StringLibrary.csproj.CoreCompileInputs.cache
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\obj\Debug\net8.0\StringLibrary.dll
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\obj\Debug\net8.0\refint\StringLibrary.dll
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\obj\Debug\net8.0\StringLibrary.pdb
+C:\Users\sm111567\Desktop\Projects\College\COMP367\comp367Munoz-lab4\Lab4_ClassLibrary\StringLibrary\obj\Debug\net8.0\ref\StringLibrary.dll
