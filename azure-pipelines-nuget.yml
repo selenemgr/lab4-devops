@@ -14,7 +14,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   solutionPath: 'Lab4_ClassLibrary.sln' 
-  feedId: 'Lab4-Feed' 
+  feedId: 'https://pkgs.dev.azure.com/smunozgo/b4bcea45-b686-4897-864a-da46933c130a/_packaging/Lab4-Feed/nuget/v3/index.json'  
 
 steps:
   # Checkout the GitHub repo connected to this pipeline
@@ -27,7 +27,7 @@ steps:
       version: '8.0.x'
     displayName: 'Install .NET 8 SDK'
 
-  # Authenticate with Azure Artifacts (for pushing NuGet packages)
+  # Authenticate with Azure Artifacts 
   - task: NuGetAuthenticate@1
     displayName: 'Authenticate to Azure Artifacts'
 
@@ -39,7 +39,7 @@ steps:
   - script: dotnet build $(solutionPath) --configuration $(buildConfiguration) --no-restore
     displayName: 'Build solution'
 
-  # Pack the solution into a NuGet package (you can specify the projects to pack if needed)
+  # Pack the solution into a NuGet package 
   - script: dotnet pack $(solutionPath) --configuration $(buildConfiguration) --no-build -o "$(Build.ArtifactStagingDirectory)"
     displayName: 'Pack NuGet package'
 
