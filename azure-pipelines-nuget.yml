@@ -44,5 +44,5 @@ steps:
     displayName: 'Pack NuGet package'
 
   # Push the NuGet package using dotnet nuget push
-  - script: dotnet nuget push --source $(feedURL) --api-key az $(Build.ArtifactStagingDirectory)\*.nupkg
+  - script: dotnet nuget push --source $(feedURL) --api-key az "$(Build.ArtifactStagingDirectory)\*.nupkg"
     displayName: 'Push package to Azure Artifacts'
